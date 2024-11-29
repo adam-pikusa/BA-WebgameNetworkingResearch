@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkkvoj7edcxbl"]
+
+[ext_resource type="Script" path="res://client/scripts/game/entities/item.gd" id="1_e5wcr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t88jd"]
+albedo_color = Color(0.773973, 0, 0.00374111, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_fxllx"]
+material = SubResource("StandardMaterial3D_t88jd")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Item" type="MeshInstance3D"]
+mesh = SubResource("PrismMesh_fxllx")
+script = ExtResource("1_e5wcr")

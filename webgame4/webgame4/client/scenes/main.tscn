@@ -1,0 +1,114 @@
+[gd_scene load_steps=4 format=3 uid="uid://osuem1530wgw"]
+
+[ext_resource type="Script" path="res://client/scripts/main.gd" id="1_i4478"]
+[ext_resource type="PackedScene" uid="uid://b7pleqniriu1y" path="res://client/scenes/game/game.tscn" id="2_irgq8"]
+[ext_resource type="PackedScene" uid="uid://ig4piyrsdj1p" path="res://testing/town_testing.tscn" id="3_x2k2a"]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("select_protocol_popup", "servers", "client_name", "name_error", "join_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i4478")
+select_protocol_popup = NodePath("SelectProtocol")
+game_scene = ExtResource("2_irgq8")
+debug_scene = ExtResource("3_x2k2a")
+servers = NodePath("VBoxContainer/ItemListServers")
+client_name = NodePath("VBoxContainer/LineEditClientName")
+name_error = NodePath("VBoxContainer/NameError")
+join_button = NodePath("VBoxContainer/ButtonJoin")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 220.0
+grow_horizontal = 2
+
+[node name="LabelServers" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "select server:"
+horizontal_alignment = 1
+
+[node name="ItemListServers" type="ItemList" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.115)
+layout_mode = 2
+auto_height = true
+item_count = 1
+item_0/text = "debug"
+
+[node name="ButtonRefreshServers" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "refresh server list"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPlayerName" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "enter player name:"
+horizontal_alignment = 1
+
+[node name="LineEditClientName" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="NameError" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+
+[node name="ButtonJoin" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "join"
+
+[node name="SelectProtocol" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_right = 75.0
+offset_bottom = 200.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="SelectProtocol"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+color = Color(0.521141, 0.521141, 0.521141, 1)
+
+[node name="Choices" type="VBoxContainer" parent="SelectProtocol"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SelectProtocol/Choices"]
+layout_mode = 2
+text = "choose protocol:"
+
+[node name="ButtonWebRTC" type="Button" parent="SelectProtocol/Choices"]
+layout_mode = 2
+text = "WebRTC"
+
+[node name="ButtonWebSocket" type="Button" parent="SelectProtocol/Choices"]
+layout_mode = 2
+text = "WebSocket"
+
+[node name="ButtonENet" type="Button" parent="SelectProtocol/Choices"]
+layout_mode = 2
+text = "ENet"
+
+[node name="ButtonTCP" type="Button" parent="SelectProtocol/Choices"]
+layout_mode = 2
+text = "TCP"
+
+[connection signal="pressed" from="VBoxContainer/ButtonRefreshServers" to="." method="_on_button_refresh_servers_pressed"]
+[connection signal="text_changed" from="VBoxContainer/LineEditClientName" to="." method="_on_line_edit_client_name_text_changed"]
+[connection signal="pressed" from="VBoxContainer/ButtonJoin" to="." method="_on_button_join_pressed"]
+[connection signal="pressed" from="SelectProtocol/Choices/ButtonWebRTC" to="." method="_on_button_web_rtc_pressed"]
+[connection signal="pressed" from="SelectProtocol/Choices/ButtonWebSocket" to="." method="_on_button_web_socket_pressed"]
+[connection signal="pressed" from="SelectProtocol/Choices/ButtonENet" to="." method="_on_button_e_net_pressed"]
+[connection signal="pressed" from="SelectProtocol/Choices/ButtonTCP" to="." method="_on_button_tcp_pressed"]

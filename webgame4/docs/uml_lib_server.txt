@@ -1,0 +1,24 @@
+@startuml
+
+lib.server.ServerBase <|-- lib.server.ServerReliable
+lib.server.ServerReliable <|-- lib.server.ServerWebSocket
+lib.server.ServerReliable <|-- lib.server.ServerWebRTC
+lib.server.ServerReliable <|-- lib.server.ServerENet
+lib.server.ServerReliable <|-- lib.server.ServerTCP
+
+lib.server.ClientConnection <|-- lib.server.ClientConnectionWebSocket
+lib.server.ClientConnection <|-- lib.server.ClientConnectionWebRTC
+lib.server.ClientConnection <|-- lib.server.ClientConnectionTCP
+lib.server.ClientConnection <|-- lib.server.ClientConnectionENet
+
+lib.server.ServerReliable *-- lib.server.ClientConnection : nested class
+
+lib.server.ServerWebSocket *-- lib.server.ClientConnectionWebSocket : nested class
+lib.server.ServerWebSocket *-- lib.server.ConnectionWebSocket : nested class
+
+lib.server.ServerTCP *-- lib.server.ClientConnectionTCP : nested class
+lib.server.ServerTCP *-- lib.server.ConnectionTCP : nested class
+
+lib.server.ServerENet *-- lib.server.ClientConnectionENet : nested class
+
+@enduml

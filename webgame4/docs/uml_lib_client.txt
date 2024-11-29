@@ -1,0 +1,9 @@
+@startuml
+
+lib.client.ClientBase <|-- lib.client.ClientReliable
+lib.client.ClientReliable <|-- lib.client.ClientWebSocket
+lib.client.ClientReliable <|-- lib.client.ClientENet
+lib.client.ClientReliable <|-- lib.client.ClientWebRTC
+lib.client.ClientReliable <|-- lib.client.ClientTCP
+
+@enduml

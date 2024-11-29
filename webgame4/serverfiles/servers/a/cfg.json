@@ -1,0 +1,7 @@
+{
+    "server_name": "WS",
+    "api_url": "http://webgame4serverbrowser:7890/api/",
+    "protocol": "websocket",
+        "bind_port": 25566,
+        "bind_url": "wss://dev3.gasstationsoftware.net/server/a"
+}

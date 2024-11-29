@@ -1,0 +1,7 @@
+{
+    "server_name": "ENET",
+    "api_url": "http://172.19.0.10:7890/api/",
+    "protocol": "enet",
+        "bind_address": "dev3.gasstationsoftware.net",
+        "bind_port": 25568
+}

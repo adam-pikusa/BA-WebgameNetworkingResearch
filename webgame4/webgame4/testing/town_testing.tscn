@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://ig4piyrsdj1p"]
+
+[ext_resource type="PackedScene" uid="uid://b5wo7tj7opiyo" path="res://common/scenes/town.tscn" id="1_1a2ru"]
+[ext_resource type="Script" path="res://testing/town_testing.gd" id="1_730ud"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_00c8b"]
+radius = 0.3
+height = 0.6
+radial_segments = 16
+rings = 8
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_6hlnu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2j03v"]
+
+[sub_resource type="Sky" id="Sky_fka35"]
+sky_material = SubResource("ProceduralSkyMaterial_2j03v")
+
+[sub_resource type="Environment" id="Environment_37hoh"]
+background_mode = 2
+sky = SubResource("Sky_fka35")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_730ud")
+
+[node name="Town" parent="." instance=ExtResource("1_1a2ru")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.968008, -0.0894885, 0.234421, 2.12738e-08, 0.934242, 0.35664, -0.250921, 0.345231, -0.904353, -1.80748, 3.45965, 28.9627)
+
+[node name="VSlider" type="VSlider" parent="."]
+offset_left = 48.0
+offset_top = 14.0
+offset_right = 90.0
+offset_bottom = 453.0
+min_value = -4.0
+max_value = 4.0
+step = 0.0
+value = 2.0
+
+[node name="TheBox" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34596, 3.28516, 32.582)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.172125, 2.38419e-07, -2.24398)
+mesh = SubResource("SphereMesh_00c8b")
+
+[node name="Data" type="TextEdit" parent="."]
+offset_left = 530.0
+offset_top = 18.0
+offset_right = 825.0
+offset_bottom = 347.0
+editable = false
+wrap_mode = 1
+
+[node name="Draw" type="MeshInstance3D" parent="."]
+mesh = SubResource("ImmediateMesh_6hlnu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_37hoh")
+
+[connection signal="value_changed" from="VSlider" to="." method="_on_v_slider_value_changed"]

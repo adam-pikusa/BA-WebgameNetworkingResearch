@@ -1,0 +1,15 @@
+class_name ErrorCodes
+
+static var TCP_Status = {
+	StreamPeerTCP.STATUS_CONNECTED : "STATUS_CONNECTED",
+	StreamPeerTCP.STATUS_CONNECTING : "STATUS_CONNECTING",
+	StreamPeerTCP.STATUS_ERROR : "STATUS_ERROR",
+	StreamPeerTCP.STATUS_NONE : "STATUS_NONE"
+}
+
+static var WebSocket_ReadyState = {
+	WebSocketPeer.STATE_CLOSED : "STATE_CLOSED",
+	WebSocketPeer.STATE_CLOSING : "STATE_CLOSING",
+	WebSocketPeer.STATE_CONNECTING : "STATE_CONNECTING",
+	WebSocketPeer.STATE_OPEN : "STATE_OPEN"
+}

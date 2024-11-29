@@ -1,0 +1,1 @@
+docker build -t webgame4serverbrowser:latest .

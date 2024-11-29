@@ -1,0 +1,139 @@
+[gd_scene load_steps=16 format=3 uid="uid://b7pleqniriu1y"]
+
+[ext_resource type="Script" path="res://client/scripts/game/game.gd" id="1_twvur"]
+[ext_resource type="Script" path="res://client/scripts/game/settings.gd" id="2_al6au"]
+[ext_resource type="Script" path="res://client/scripts/game/map_cam.gd" id="2_jdg17"]
+[ext_resource type="PackedScene" uid="uid://b5wo7tj7opiyo" path="res://common/scenes/town.tscn" id="2_mwpr0"]
+[ext_resource type="Script" path="res://client/scripts/game/entities/entity_pool.gd" id="2_p4qp2"]
+[ext_resource type="Shader" path="res://client/shaders/water.gdshader" id="6_qaw3r"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sigd0"]
+sky_top_color = Color(0.572896, 0.7625, 0.880601, 1)
+sky_horizon_color = Color(0.789169, 0.894957, 0.932569, 1)
+ground_bottom_color = Color(0.564006, 0.793912, 0.991263, 1)
+ground_horizon_color = Color(0.665871, 0.93017, 0.939023, 1)
+
+[sub_resource type="Sky" id="Sky_xpb1l"]
+sky_material = SubResource("ProceduralSkyMaterial_sigd0")
+
+[sub_resource type="Environment" id="Environment_skd3n"]
+background_mode = 2
+sky = SubResource("Sky_xpb1l")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cfhmh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4koc3"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_cfhmh")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cyo03"]
+seed = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdf3c"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_cyo03")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjn4s"]
+render_priority = 0
+shader = ExtResource("6_qaw3r")
+shader_parameter/water_color = Color(0.481886, 0.823289, 0.731516, 1)
+shader_parameter/depth_distance = 10.6
+shader_parameter/beers_law = 2.0
+shader_parameter/water_opacity = 0.8
+shader_parameter/normal_scale = 0.4
+shader_parameter/roughness_scale = 0.3
+shader_parameter/time_scale = 2.6
+shader_parameter/scale = 53.1
+shader_parameter/wave_travel = 0.002
+shader_parameter/water_noise_tex1 = SubResource("NoiseTexture2D_4koc3")
+shader_parameter/water_noise_tex2 = SubResource("NoiseTexture2D_xdf3c")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sskhl"]
+material = SubResource("ShaderMaterial_jjn4s")
+size = Vector2(5000, 5000)
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("error_label", "delta_label", "entity_pool")]
+script = ExtResource("1_twvur")
+error_label = NodePath("LabelError")
+delta_label = NodePath("LabelDelta")
+entity_pool = NodePath("EntityPool")
+
+[node name="LabelError" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LabelDelta" type="Label" parent="."]
+offset_top = 25.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="Settings" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -52.5
+offset_right = 97.0
+offset_bottom = 52.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_al6au")
+
+[node name="LabelSens" type="Label" parent="Settings"]
+layout_mode = 2
+text = "mouse sensitivity"
+
+[node name="HSliderSens" type="HSlider" parent="Settings"]
+layout_mode = 2
+min_value = 0.001
+max_value = 0.1
+step = 0.0
+value = 0.01
+exp_edit = true
+tick_count = 10
+ticks_on_borders = true
+
+[node name="LabelVolume" type="Label" parent="Settings"]
+layout_mode = 2
+text = "volume"
+
+[node name="HSliderVolume" type="HSlider" parent="Settings"]
+layout_mode = 2
+tick_count = 10
+ticks_on_borders = true
+
+[node name="ButtonScreenModeToggle" type="Button" parent="Settings"]
+layout_mode = 2
+text = "toggle fullscreen (F11)"
+
+[node name="Town" parent="." instance=ExtResource("2_mwpr0")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_skd3n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.880866, -0.473366, 0, -0.195835, -0.364422, 0.910409, -0.430957, -0.801949, -0.413708, 0, 0, 0)
+
+[node name="EntityPool" type="Node3D" parent="."]
+script = ExtResource("2_p4qp2")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.95732, 0, -0.289032, 0, 1, 0, 0.289032, 0, 0.95732, -15.373, 23.165, 3.335)
+script = ExtResource("2_jdg17")
+
+[node name="MapCam" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.848113, 0.529816, 0, -0.529816, 0.848113, 0, 27.5599, 32.3038)
+
+[node name="Water" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_sskhl")
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9047, 2.80229, 24.3519)
+
+[connection signal="value_changed" from="Settings/HSliderSens" to="Settings" method="_on_h_slider_sens_value_changed"]
+[connection signal="pressed" from="Settings/ButtonScreenModeToggle" to="Settings" method="_on_button_screen_mode_toggle_pressed"]

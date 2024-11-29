@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba5gs7b2b1fxd"]
+
+[ext_resource type="Script" path="res://client/scripts/game/world_label.gd" id="1_x1ibp"]
+
+[node name="WorldLabel" type="Marker3D" node_paths=PackedStringArray("_label")]
+script = ExtResource("1_x1ibp")
+_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

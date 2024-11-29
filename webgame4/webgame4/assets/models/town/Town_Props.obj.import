@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d20cdwauuwo4o"
+path="res://.godot/imported/Town_Props.obj-e4800de5886b26ee70805b01c0b92577.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Town_Props.obj-e4800de5886b26ee70805b01c0b92577.mesh"]
+
+source_file="res://assets/models/town/Town_Props.obj"
+dest_files=["res://.godot/imported/Town_Props.obj-e4800de5886b26ee70805b01c0b92577.mesh", "res://.godot/imported/Town_Props.obj-e4800de5886b26ee70805b01c0b92577.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

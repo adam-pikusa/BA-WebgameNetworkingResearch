@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcuwvbepmaikv"]
+
+[ext_resource type="Script" path="res://server/scripts/game/game.gd" id="1_vudjw"]
+[ext_resource type="PackedScene" uid="uid://b5wo7tj7opiyo" path="res://common/scenes/town.tscn" id="3_vokvl"]
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("collision_grid_editor")]
+script = ExtResource("1_vudjw")
+collision_grid_editor = NodePath("")
+
+[node name="Town" parent="." instance=ExtResource("3_vokvl")]

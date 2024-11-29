@@ -1,0 +1,5 @@
+{
+    "server_name": "WRTC",
+    "api_url": "http://172.19.0.10:7890/api/",
+    "protocol": "webrtc"
+}

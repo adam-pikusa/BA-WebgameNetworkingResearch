@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ctocxfouacwf2"
+path="res://.godot/imported/Town_Plants.obj-d4a051a346adab36a3f7f894d80ad311.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Town_Plants.obj-d4a051a346adab36a3f7f894d80ad311.mesh"]
+
+source_file="res://assets/models/town/Town_Plants.obj"
+dest_files=["res://.godot/imported/Town_Plants.obj-d4a051a346adab36a3f7f894d80ad311.mesh", "res://.godot/imported/Town_Plants.obj-d4a051a346adab36a3f7f894d80ad311.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

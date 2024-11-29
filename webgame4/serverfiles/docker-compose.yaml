@@ -1,0 +1,52 @@
+version: '3'
+services:
+  webgame4nginx:
+    container_name: webgame4nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ~/games/webgame4/static:/usr/share/nginx/html
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    networks: 
+      - nginx
+    depends_on:
+      - webgame4serverbrowser
+  
+  webgame4serverbrowser:
+    container_name: webgame4serverbrowser
+    image: webgame4serverbrowser
+    networks:
+      nginx:
+        ipv4_address: 172.19.0.10
+    depends_on:
+      - webgame4redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  webgame4redis:
+    container_name: webgame4redis
+    image: redis:alpine
+    networks:
+      - nginx
+
+  webgame4servera:
+    container_name: webgame4servera
+    image: webgame4server
+    volumes:
+      - ./servers/a/cfg.json:/server/cfg.json
+    depends_on:
+      - webgame4serverbrowser
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    name: nginx
+    driver: bridge

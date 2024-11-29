@@ -1,0 +1,10 @@
+@startuml
+
+common.sim.Sim_Entity <|-- common.sim.Sim_Box
+common.sim.Sim_Entity <|-- common.sim.Sim_Human
+common.sim.Sim_Entity <|-- common.sim.Sim_Item
+common.sim.Sim_Entity <-- common.sim.Simulation
+common.sim.Context <.. common.sim.Simulation
+common.sim.Context <.. common.sim.Sim_Entity
+
+@enduml

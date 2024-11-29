@@ -1,0 +1,9 @@
+@startuml
+
+client.entities.Entity <|-- client.entities.Box
+client.entities.Entity <|-- client.entities.Human
+client.entities.Entity <|-- client.entities.Item
+
+client.GameStateInterface <|-- client.GameState
+
+@enduml

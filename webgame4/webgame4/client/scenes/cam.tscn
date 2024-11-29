@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ty1a6ini5hq"]
+
+[ext_resource type="Script" path="res://client/scripts/game/cam.gd" id="1_mt5g7"]
+
+[node name="Cam" type="Node3D"]
+script = ExtResource("1_mt5g7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Cursor" type="Line2D" parent="."]
+points = PackedVector2Array(427, 240, 428, 240)
+width = 3.0
+begin_cap_mode = 2
+end_cap_mode = 2

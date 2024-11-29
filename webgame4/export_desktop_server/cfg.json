@@ -1,0 +1,5 @@
+{
+    "server_name": "WRTC",
+    "api_url": "https://dev3.gasstationsoftware.net/api/",
+    "protocol": "webrtc"
+}
